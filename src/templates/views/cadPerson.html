@@ -3,22 +3,22 @@
     
     <div class="form-group">
       <label class="form-control-label" for="inputNome">Nome Completo</label>
-      <input type="text" class="form-control" id="inputNome" placeholder="Informe o Nome Completo">
+      <input type="text" class="form-control" id="inputNome" placeholder="Informe o Nome Completo" ng-model="person.name">
     </div>
     
     <div class="form-group">
       <label class="form-control-label" for="inputCPF">CPF</label>
-      <input type="text" class="form-control" id="inputCPF" placeholder="Informe o CPF">
+      <input type="text" class="form-control" id="inputCPF" placeholder="Informe o CPF" ng-model="person.cpf">
     </div>
 
     <div class="form-group">
       <label class="form-control-label" for="inputDataNasc">Data Nascimento</label>
-      <input type="text" class="form-control" id="inputDataNasc" placeholder="Informe a data de nascimento">
+      <input type="text" class="form-control" id="inputDataNasc" placeholder="Informe a data de nascimento" ng-model="person.nasc">
     </div>
 
     <div class="form-group">
       <label class="form-control-label" for="inputPeso">Peso Kg</label>
-      <input type="text" class="form-control" id="inputPeso" placeholder="Informe o peso em KG">
+      <input type="text" class="form-control" id="inputPeso" placeholder="Informe o peso em KG" ng-model="person.peso">
     </div>
 
     <div class="form-group">
@@ -32,7 +32,7 @@
     <option ng-repeat="r in searchresults ng-if="r.Name" value="{{r.id}}"> {{r.Name}} </option> 
   </select>-->
 
-    <button type="submit" class="btn btn-success">Confirmar</button>
+    <button type="submit" class="btn btn-success" ng-click="addPerson(person)">Confirmar</button>
     <button type="submit" class="btn btn-warning">Cancelar</button>
   </form>
 </div>
