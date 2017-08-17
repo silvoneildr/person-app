@@ -1,5 +1,6 @@
 angular.module('personApp', [
-    'ngRoute'
+    'ngRoute',
+    'db.dao'
 ])
 .config([
     '$routeProvider',
@@ -12,6 +13,9 @@ angular.module('personApp', [
             .when('/persons', {
                 templateUrl: 'views/person.html',
                 controller: 'PersonCtrl'
+            }).when('/cadPersons', {
+                templateUrl: 'views/cadPerson.html',
+                controller: 'cadPersonCtrl'
             });
     }
 ]);

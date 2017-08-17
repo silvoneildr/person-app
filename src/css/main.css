@@ -25,11 +25,27 @@ body{
     font-family: cursive;
 }
 
-#col-md-2 col-sm-2 col-lg-{
+#col-md-3 col-md-pull-9{
     width: 200px;
 }
 
 .btn-group{
     margin-bottom: 15px;
     margin-top: 5px;
+}
+
+.navbar-right{
+    margin-top: 20px;
+    font-family:cursive;
+    font-size: 16px;
+}
+
+.card-title{
+    font-family:cursive;   
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.card-text{
+    font-family:cursive;   
 }

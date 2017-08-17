@@ -1,7 +1,8 @@
 angular.module('personApp')
-    .controller('PersonCtrl', ['$scope', function($scope) {
-        console.log('Loaded.');
-        $scope.message = 'Hello Persons';
+    .controller('PersonCtrl', ['$scope', 'dao', function($scope, dao) {
+
+        // $scope.persons = dao.getPersons();
+        // $scope.persons.open();
 
         $scope.persons = [
             {id: 1, name: 'Joaquim Barba', cpf: '80247843270', nasc: '01/10/1960', peso: 60.5, uf: 'SP'},
@@ -11,5 +12,6 @@ angular.module('personApp')
             {id: 1, name: 'Chespirito Rodrigues', cpf: '16888255840', nasc: '19/08/2000', peso: 85.6, uf: 'GO'},
             {id: 1, name: 'Antônio Queixada', cpf: '21863343210', nasc: '05/01/1977', peso: 93.2, uf: 'MA'},
         ];
+
     }
 ]);
