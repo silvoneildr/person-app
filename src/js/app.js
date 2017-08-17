@@ -15,7 +15,7 @@ angular.module('personApp', [
                 controller: 'PersonCtrl'
             }).when('/cadPersons', {
                 templateUrl: 'views/cadPerson.html',
-                controller: 'cadPersonCtrl'
+                controller: 'CadPersonCtrl'
             });
     }
 ]);
