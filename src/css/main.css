@@ -44,17 +44,14 @@ body{
     font-family:cursive;   
 }
 
-.container {
-	width: 700px;
+.formulario {
+
 	margin-top: 20px;
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
 }
 
-.jumbotron {
-    margin-top: 0;
-	margin-left: auto;
-	margin-right: auto;
-	position: relative;
+.error {
+    color: red;
 }

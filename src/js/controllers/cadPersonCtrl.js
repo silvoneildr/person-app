@@ -27,5 +27,18 @@ angular.module('personApp')
             
             $scope.persons.post();
         };
+
+       	$scope.send = function($scope){
+		    alert("send");
+        }
+        
+        $scope.submitForm = function(isValid) {
+
+            // verifica se o formulário é válido
+            if (isValid) {
+                alert('Formulário OK');
+            }
+
+        };
     }
 ]);

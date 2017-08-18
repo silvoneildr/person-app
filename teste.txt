@@ -2,8 +2,8 @@ O candidato deverá criar uma pequena aplicação Web para cadastro de pessoas segu
 os itens abaixo:
 
 1. O formulário de cadastro deve conter os seguintes campos: Nome, CPF, Data de
-
 Nascimento, Peso (em Kg) e UF:
+
 ? CPF será único, ou seja o mesmo CPF só pode pertencer a uma pessoa;
 ? Nome e CPF serão obrigatórios;
 ? UF deve ser uma lista onde poderá ser escolhido um dos 26 estados ou o distrito

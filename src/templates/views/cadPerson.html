@@ -1,36 +1,40 @@
 <div class="container" ng-controller="CadPersonCtrl">
-  <form>
+  <form name="cadForm" ng-submit="submitForm(cadForm.$valid)" novalidate>
     
     <div class="form-group">
-      <label class="form-control-label" for="inputNome">Nome Completo</label>
-      <input type="text" class="form-control" id="inputNome" placeholder="Informe o Nome Completo" ng-model="person.name">
+      <label class="form-control-label">Nome Completo</label>
+      <input type="text" class="form-control" name="inputNome" placeholder="Informe o Nome Completo" ng-model="person.name" required>
+      <span class="error" ng-show="cadForm.inputNome.$invalid && !cadForm.inputNome.$pristine">O nome é obrigatório</span>
     </div>
     
     <div class="form-group">
-      <label class="form-control-label" for="inputCPF">CPF</label>
-      <input type="text" class="form-control" id="inputCPF" placeholder="Informe o CPF" ng-model="person.cpf">
+      <label class="form-control-label">CPF</label>
+      <input type="text" class="form-control" name="inputCPF" placeholder="Informe o CPF" ng-model="person.cpf">
+      <span class="error" ng-show="cadForm.inputCPF.$invalid && !cadForm.inputCPF.$pristine">O CPF é obrigatório</span>
     </div>
 
     <div class="form-group">
-      <label class="form-control-label" for="inputDataNasc">Data de Nascimento</label>
-      <input type="text" class="form-control" id="inputDataNasc" placeholder="Informe a data de nascimento" ng-model="person.nasc">
+      <label class="form-control-label">Data de Nascimento</label>
+      <input type="text" class="form-control" name="inputDataNasc" placeholder="Informe a data de nascimento" ng-model="person.nasc">
     </div>
 
     <div class="form-group">
-      <label class="form-control-label" for="inputPeso">Peso (Kg)</label>
-      <input type="text" class="form-control" id="inputPeso" placeholder="Informe o peso em KG" ng-model="person.peso">
+      <label class="form-control-label">Peso (Kg)</label>
+      <input type="text" class="form-control" name="inputPeso" placeholder="Informe o peso em KG" ng-model="person.peso">
     </div>
 
     <div class="form-group">
-      <label for="selectUF">UF</label>
-        <select class="form-control" id="selectUF" ng-model="person.uf">
+      <label class="form-control-label">UF</label>
+        <select class="form-control" name="selectUF" ng-model="person.uf">
           <option ng-repeat="u in ufs" value="{{u.uf}}">{{u.uf}}</option>
         </select>
       </select>
     </div>
     <br>
 
-    <button type="submit" class="btn btn-success" ng-click="addPerson(person)">Confirmar</button>
+    <button type="submit" class="btn btn-success"  
+        ng-disabled="cadForm.$invalid" 
+        ng-click="addPerson(person)">Confirmar</button>
     <a href="#!persons" class="btn btn-warning">Cancelar</a>
   </form>
 </div>
