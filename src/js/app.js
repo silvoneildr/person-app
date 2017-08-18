@@ -13,9 +13,11 @@ angular.module('personApp', [
             .when('/persons', {
                 templateUrl: 'views/person.html',
                 controller: 'PersonCtrl'
-            }).when('/cadPersons', {
+            })
+            .when('/cadPersons', {
                 templateUrl: 'views/cadPerson.html',
                 controller: 'CadPersonCtrl'
-            });
+            })
+            .otherwise({redirectTo: '/'});
     }
 ]);

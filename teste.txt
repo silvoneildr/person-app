@@ -1,0 +1,28 @@
+O candidato deverá criar uma pequena aplicação Web para cadastro de pessoas seguindo
+os itens abaixo:
+
+1. O formulário de cadastro deve conter os seguintes campos: Nome, CPF, Data de
+
+Nascimento, Peso (em Kg) e UF:
+? CPF será único, ou seja o mesmo CPF só pode pertencer a uma pessoa;
+? Nome e CPF serão obrigatórios;
+? UF deve ser uma lista onde poderá ser escolhido um dos 26 estados ou o distrito
+federal. Para preenchimento da lista utilize o webservice
+http://www.geonames.org/childrenJSON?geonameId=3469034.
+
+2. Salvar os dados em algum banco de dados ou arquivo em formato JSON. Caso utilize
+algum banco, informar qual e enviar o script (SQL) de criação.
+3. Utilizar no front-end HTML, CSS e Javascript. Frameworks são permitidos, nossas
+equipes utilizam jQuery, AngularJS e Vue.js. Temos preferência por estes, mas é
+permitido utilizar outro. Ao enviar o código da aplicação, informar qual(is)
+framework(s) utilizado(s).
+
+4. O back-end pode ser utilizando Javascript, Java, C#, Python ou PHP. Frameworks são
+permitidos. Bibliotecas livres são permitidas. Ao enviar o código da aplicação,
+informar qual linguagem utilizada, qual(is) framework(s) e biblioteca(s) utilizado(s).
+
+5. Hospedar a aplicação em algum servidor e disponibilizar o link (mesmo que seja em
+um servidor gratuito/temporário) será um diferencial.
+
+6. Caso possua GitHub, pedimos que disponibilize o código lá também e nos envie o
+link.

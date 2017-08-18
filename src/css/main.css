@@ -30,14 +30,8 @@ body{
 }
 
 .btn-group{
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     margin-top: 5px;
-}
-
-.navbar-right{
-    margin-top: 20px;
-    font-family:cursive;
-    font-size: 16px;
 }
 
 .card-title{
@@ -48,4 +42,19 @@ body{
 
 .card-text{
     font-family:cursive;   
+}
+
+.container {
+	width: 700px;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+
+.jumbotron {
+    margin-top: 0;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
 }

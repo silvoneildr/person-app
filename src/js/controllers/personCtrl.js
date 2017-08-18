@@ -2,6 +2,7 @@ angular.module('personApp')
     .controller('PersonCtrl', ['$scope', 'dao', function($scope, dao) {
 
         $scope.persons = dao.getPersons();
+        $scope.selected = false;
 
         // $scope.persons = [
         //     {id: 1, name: 'Joaquim Barba', cpf: '80247843270', nasc: '01/10/1960', peso: 60.5, uf: 'SP'},
