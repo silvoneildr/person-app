@@ -4,7 +4,7 @@
     <div class="form-group">
       <label class="form-control-label">Nome Completo</label>
       <input type="text" class="form-control" name="inputNome" placeholder="Informe o Nome Completo" ng-model="person.name" required>
-      <p class="alert alert-danger" ng-show="cadForm.inputNome.$invalid && !cadForm.inputNome.$pristine">
+      <p class="alert alert-danger" ng-show="cadForm.inputNome.$invalid && cadForm.inputNome.$dirty">
         O campo nome é obrigatório!
       </p>
     </div>
@@ -43,9 +43,10 @@
     </div>
     <br>
 
-    <button type="submit" class="btn btn-success"  
-        ng-disabled="cadForm.$invalid" 
-        ng-click="addPerson(person)">Confirmar</button>
-    <a href="#!persons" class="btn btn-warning">Cancelar</a>
+    <button type="submit" class="btn btn-primary" ng-disabled="cadForm.$invalid" 
+        ng-click="addPerson(person)">
+        Confirmar
+    </button>
+    <a href="#!persons" class="btn btn-light">Cancelar</a>
   </form>
 </div>
