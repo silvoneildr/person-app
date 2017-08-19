@@ -1,14 +1,14 @@
 angular.module('personApp')
-    .controller('PersonCtrl', function($scope, $localtion, $stateParams, dao) {
+    .controller('PersonCtrl', function($scope, dao) {
 
         var loadPersons = function(){
             $scope.persons = dao.getPersons();
             $scope.persons.open();
         }
 
-        var loadEditPerson = function(){
+/*        var loadEditPerson = function(){
             $scope.person = dao.getPersons().getById(parseInt($stateParams.id));
-        }
+        }*/
 
         loadPersons();
 
