@@ -1,23 +1,35 @@
 angular.module('personApp')
-    .controller('PersonCtrl', ['$scope', 'dao', function($scope, dao) {
+    .controller('PersonCtrl', function($scope, $localtion, $stateParams, dao) {
 
         var loadPersons = function(){
             $scope.persons = dao.getPersons();
             $scope.persons.open();
         }
 
+        var loadEditPerson = function(){
+            $scope.person = dao.getPersons().getById(parseInt($stateParams.id));
+        }
+
         loadPersons();
 
-        $scope.delPersons = function (persons) {
-            $scope.persons = persons.filter(function (person) {
-                if (!person.selected) 
-                    return person;
-            });
-        };
         $scope.isSelected = function (persons) {
             return persons.some(function (person) {
                 return person.selected;
             });
         };
-    }
-]);
+        
+        $scope.delPersons = function (records) {
+
+            for(var i = records.length - 1; i >= 0; i--) {
+                
+				if(records[i].selected) {
+                    $scope.persons.delete(records[i]);
+				}
+			}
+        	$scope.persons.post();
+        };
+
+        $scope.editPerson = function(record){
+            //
+        };
+    });
