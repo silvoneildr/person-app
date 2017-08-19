@@ -1,12 +1,25 @@
 angular.module('personApp')
-    .controller('CadPersonCtrl', ['$scope', 'dao', function($scope, dao) {
+    .controller('CadPersonCtrl', function($scope, $http, dao) {
         $scope.persons = dao.getPersons();
         $scope.persons.open();
-        
+ 
+        $http.get("http://www.geonames.org/childrenJSON?geonameId=3469034")
+            .then(function(response) {
+                $scope.records = response;
+                //console.log(response.data.geonames[5].adminName1);
+            }, function(response) {
+                $scope.records = "Something went wrong";
+                //console.log(response.data.geonames[0].adminName1);
+            });
+
+       console.log($scope.records);
+
+
         $scope.ufs = [
             {uf: 'AM'}, {uf: 'GO'}, {uf: 'TO'}, {uf: 'SC'}, {uf: 'MG'}, {uf: 'SP'},
             {uf: 'DF'}, {uf: 'RJ'} , {uf: 'RS'}, {uf: 'BA'}, {uf: 'AL'}, {uf: 'CE'}
         ];
+
 
         $scope.addPerson = function(record){
 
@@ -27,18 +40,4 @@ angular.module('personApp')
             
             $scope.persons.post();
         };
-
-       	$scope.send = function($scope){
-		    alert("send");
-        }
-        
-        $scope.submitForm = function(isValid) {
-
-            // verifica se o formulário é válido
-            if (isValid) {
-                alert('Formulário OK');
-            }
-
-        };
-    }
-]);
+    });

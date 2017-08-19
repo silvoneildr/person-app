@@ -25,9 +25,9 @@
                 <th><input type="checkbox" ng-model="selected"</th>
                 <td>{{ person.name }}</td>
                 <td>{{ person.cpf }}</td>
-                <td>{{ person.nasc }}</td>
+                <td>{{ person.nasc | date : "dd/MM/y" }}</td>
                 <td>{{ person.peso }}</td>
-                <td>{{ person.uf }}</td>
+                <td>{{ person.uf.name }}</td>
             </tr>
         </table>
     </div>

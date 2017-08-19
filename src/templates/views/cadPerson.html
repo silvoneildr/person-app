@@ -1,33 +1,44 @@
 <div class="container" ng-controller="CadPersonCtrl">
-  <form name="cadForm" ng-submit="submitForm(cadForm.$valid)" novalidate>
+  <form name="cadForm">
     
     <div class="form-group">
       <label class="form-control-label">Nome Completo</label>
       <input type="text" class="form-control" name="inputNome" placeholder="Informe o Nome Completo" ng-model="person.name" required>
-      <span class="error" ng-show="cadForm.inputNome.$invalid && !cadForm.inputNome.$pristine">O nome é obrigatório</span>
+      <p class="alert alert-danger" ng-show="cadForm.inputNome.$invalid && !cadForm.inputNome.$pristine">
+        O campo nome é obrigatório!
+      </p>
     </div>
     
     <div class="form-group">
       <label class="form-control-label">CPF</label>
-      <input type="text" class="form-control" name="inputCPF" placeholder="Informe o CPF" ng-model="person.cpf">
-      <span class="error" ng-show="cadForm.inputCPF.$invalid && !cadForm.inputCPF.$pristine">O CPF é obrigatório</span>
+      <input type="text" class="form-control" name="inputCPF" placeholder="Informe o CPF" 
+        ng-model="person.cpf" ng-pattern="/^\d{3}.\d{3}.\d{3}-\d{2}$/"
+        
+        >
+      <p class="alert alert-danger" ng-show="cadForm.inputCPF.$invalid && cadForm.inputNome.$dirty">
+        O campo CPF deve estar no formato: 999.999.999-99!
+      </p>
     </div>
 
     <div class="form-group">
       <label class="form-control-label">Data de Nascimento</label>
-      <input type="text" class="form-control" name="inputDataNasc" placeholder="Informe a data de nascimento" ng-model="person.nasc">
+      <input type="date" class="form-control" name="inputDataNasc" ng-model="person.nasc">
     </div>
 
     <div class="form-group">
       <label class="form-control-label">Peso (Kg)</label>
-      <input type="text" class="form-control" name="inputPeso" placeholder="Informe o peso em KG" ng-model="person.peso">
+      <input type="number" class="form-control" name="inputPeso" 
+                            placeholder="Informe o peso em KG" 
+                            ng-model="person.peso"
+                            min="0" max="1000">
     </div>
 
     <div class="form-group">
       <label class="form-control-label">UF</label>
-        <select class="form-control" name="selectUF" ng-model="person.uf">
-          <option ng-repeat="u in ufs" value="{{u.uf}}">{{u.uf}}</option>
-        </select>
+      <select class="form-control" 
+              ng-model="person.uf" 
+              ng-options="x.name for x in records.data.geonames ">
+        <option value="">Selecione um estado</option>
       </select>
     </div>
     <br>
