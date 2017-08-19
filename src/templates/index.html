@@ -12,23 +12,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     </head>
     <body>
-        <header>
-            <nav class="navbar navbar-default">
-                <div class="container">
-                    <div class="navbar-header">
-                        <div class="row">
-                            <div class="col-md-3 col-md-pull-9">
-                                <a class="navbar-left" href="#"><img src=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#!persons">Pessoas</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
+        <div class="header" ng-include="'views/header.html'"></div>
         <ng-view class="view"></ng-view>
     </body>
     <script src="js/scripts.js"></script>
