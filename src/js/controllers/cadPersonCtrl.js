@@ -20,11 +20,17 @@ angular.module('personApp')
                 $scope.persons = [];
 		    };
 
-            $scope.persons.save(record);
-            $scope.persons.post();
+            console.log(record.cpf);    
 
-            $scope.cadForm.$setPristine();
-            $location.path("/persons"); 
+			if ($scope.persons.data.indexOf(record.cpf > 0)) {
+                window.alert('Já exite um registro com CPF: ' + record.cpf);
+            } else {
+                
+                $scope.persons.save(record);
+                $scope.persons.post();
+                $scope.cadForm.$setPristine();
+                $location.path("/persons"); 
+            };
         };
 
         $scope.delPerson = function(records){
