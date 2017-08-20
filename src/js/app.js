@@ -4,7 +4,7 @@ angular.module('personApp', [
 ])
 .config([
     '$routeProvider',
-    function($routeProvider) {
+    function($routeProvider, $routeParams) {
         $routeProvider
             .when('/', {
                 templateUrl: 'views/home.html',
@@ -15,6 +15,10 @@ angular.module('personApp', [
                 controller: 'PersonCtrl'
             })
             .when('/cadPersons', {
+                templateUrl: 'views/cadPerson.html',
+                controller: 'CadPersonCtrl'
+            })
+            .when('/cadPersons/:id', {
                 templateUrl: 'views/cadPerson.html',
                 controller: 'CadPersonCtrl'
             })

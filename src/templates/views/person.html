@@ -3,7 +3,6 @@
     <div  class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <div class="btn-group" role="group">
             <a class="btn btn-primary glyphicon glyphicon-plus" href="#!cadPersons"></a>
-            <a class="btn btn-primary glyphicon glyphicon-pencil"></a>
             <a class="btn btn-primary glyphicon glyphicon-trash" 
                 ng-click="delPersons(persons.data)" ng-if="isSelected(persons.data)"></a>
         </div>
@@ -16,6 +15,7 @@
                 <th>Data Nasc</th>
                 <th>Peso</th>
                 <th>Estado</th>
+                <th></th>
             </tr>
             <tr ng-repeat="person in persons.data">
                 <td><input type="checkbox" ng-model="person.selected"></td>
@@ -24,6 +24,9 @@
                 <td>{{ person.nasc | date : "dd/MM/y" }}</td>
                 <td>{{ person.peso }}</td>
                 <td>{{ person.uf.name }}</td>
+                <td> <a class="btn btn-primary btn-sm glyphicon glyphicon-pencil" 
+                    ng-click="editPerson(person)"></a></td>
+                    
             </tr>
         </table>
     </div>

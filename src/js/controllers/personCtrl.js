@@ -1,5 +1,5 @@
 angular.module('personApp')
-    .controller('PersonCtrl', function($scope, dao) {
+    .controller('PersonCtrl', function($scope, $location,$routeParams, dao) {
 
         var loadPersons = function(){
             $scope.persons = dao.getPersons();
@@ -30,6 +30,8 @@ angular.module('personApp')
         };
 
         $scope.editPerson = function(record){
-            //
+            $scope.person =  OjsUtils.cloneObject(record);
+            $scope.inserting = false;
+            $location.path("/cadPersons").search({id: $scope.person.id});
         };
     });
