@@ -17,7 +17,7 @@
                 <th>Estado</th>
                 <th></th>
             </tr>
-            <tr ng-repeat="person in persons.data">
+            <tr ng-repeat="person in persons.data track by person.id">
                 <td><input type="checkbox" ng-model="person.selected"></td>
                 <td>{{ person.name }}</td>
                 <td>{{ person.cpf }}</td>

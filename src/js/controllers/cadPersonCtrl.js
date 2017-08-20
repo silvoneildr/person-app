@@ -3,11 +3,19 @@ angular.module('personApp')
         
         $scope.persons = dao.getPersons();
         $scope.persons.open();
-        
+
         var paramId = parseInt($routeParams.id);
-        if (paramId) {
-            $scope.person = OjsUtils.cloneObject( $scope.persons.getById(paramId));
-        };
+
+        $http.get("http://www.geonames.org/childrenJSON?geonameId=3469034")
+            .then(function(response) {
+                $scope.arrEstados = response;
+    
+                if (paramId) {
+                    $scope.person = OjsUtils.cloneObject( $scope.persons.getById(paramId));
+                };
+            }, function(response) {
+                $scope.arrEstados = "Erro ao carregar os Estados";
+            });
 
         var ValidCPF = function(param) {
             var sum;
@@ -32,13 +40,6 @@ angular.module('personApp')
             return true;
         } 
  
-        $http.get("http://www.geonames.org/childrenJSON?geonameId=3469034")
-            .then(function(response) {
-                $scope.records = response;
-            }, function(response) {
-                $scope.records = "Erro ao carregar os Estados";
-            });
-
         $scope.addPerson = function(record){
 
             if (!$scope.persons) {

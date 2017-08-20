@@ -6,10 +6,6 @@ angular.module('personApp')
             $scope.persons.open();
         }
 
-/*        var loadEditPerson = function(){
-            $scope.person = dao.getPersons().getById(parseInt($stateParams.id));
-        }*/
-
         loadPersons();
 
         $scope.isSelected = function (persons) {
