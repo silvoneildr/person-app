@@ -15,7 +15,7 @@
         ng-model="person.cpf" ng-pattern="/^\d{3}.\d{3}.\d{3}-\d{2}$/"
         
         >
-      <p class="alert alert-danger" ng-show="cadForm.inputCPF.$invalid && cadForm.inputNome.$dirty">
+      <p class="alert alert-danger" ng-show="cadForm.inputCPF.$invalid && cadForm.inputCPF.$dirty">
         O campo CPF deve estar no formato: 999.999.999-99!
       </p>
     </div>
@@ -34,12 +34,20 @@
     </div>
 
     <div class="form-group">
-      <label class="form-control-label">UF</label>
+
+      <label for="repeatSelect">Selecione a UF</label>
+        <select class="form-control" name="uf" id="repeatSelect" ng-model="person.uf">
+          <option ng-repeat="option in arrEstados.data.geonames" value="{{option.name}}">
+            {{option.name}}
+          </option>
+        </select>  
+
+      <!--<label class="form-control-label">UF</label>
       <select class="form-control" 
               ng-model="person.uf" 
               ng-options="x.name for x in arrEstados.data.geonames">
         <option value="">Selecione um estado</option>
-      </select>
+      </select>-->
     </div>
     <br>
 
