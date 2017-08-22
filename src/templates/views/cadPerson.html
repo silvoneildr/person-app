@@ -3,7 +3,8 @@
     
     <div class="form-group">
       <label class="form-control-label">Nome Completo</label>
-      <input type="text" class="form-control" name="inputNome" placeholder="Informe o Nome Completo" ng-model="person.name" required>
+      <input type="text" class="form-control" name="inputNome" placeholder="Informe o Nome Completo" 
+        ng-model="person.name" required>
       <p class="alert alert-danger" ng-show="cadForm.inputNome.$invalid && cadForm.inputNome.$dirty">
         O campo nome é obrigatório!
       </p>
@@ -14,8 +15,9 @@
       <input type="text" class="form-control" name="inputCPF" 
         placeholder="Informe o CPF" 
         ng-model="person.cpf" 
-        ng-pattern="/^\d{3}.\d{3}.\d{3}-\d{2}$/">
-      <p class="alert alert-danger" ng-show="cadForm.inputCPF.$invalid && cadForm.inputCPF.$dirty">
+        ng-pattern="/^\d{3}.\d{3}.\d{3}-\d{2}$/" required>
+      <p class="alert alert-danger" 
+          ng-show="cadForm.inputCPF.$invalid && cadForm.inputCPF.$dirty && !cadForm.inputCPF.$pattern">
         O campo CPF deve estar no formato: 999.999.999-99!
       </p>
     </div>
