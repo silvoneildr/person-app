@@ -1,11 +1,11 @@
 <div class="container" ng-controller="PersonCtrl">
     
     <div  class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <div class="btn-group" role="group">
-            <a class="btn btn-primary glyphicon glyphicon-plus" href="#!cadPersons"></a>
-            <a class="btn btn-primary glyphicon glyphicon-trash" 
-                ng-click="delPersons(persons.data)" ng-if="isSelected(persons.data)"></a>
-        </div>
+            <div class="btn-group" role="group">
+                <a class="btn btn-primary" href="#!cadPersons">
+                    + Inserir Novo
+                </a>
+            </div>
    
         <table id="tbPerson" class="table table-striped">
             <tr>
@@ -17,16 +17,21 @@
                 <th>Estado</th>
                 <th></th>
             </tr>
-            <tr ng-repeat="person in persons.data track by person.id">
-                <td><input type="checkbox" ng-model="person.selected"></td>
-                <td>{{ person.name }}</td>
+            <tr ng-repeat="person in persons ">
+                <td></td>
+                <td>{{ person.nome }}</td>
                 <td>{{ person.cpf }}</td>
                 <td>{{ person.nasc | date : "dd/MM/y" }}</td>
                 <td>{{ person.peso }}</td>
                 <td>{{ person.uf }}</td>
-                <td> <a class="btn btn-primary btn-sm glyphicon glyphicon-pencil" 
-                    ng-click="editPerson(person)"></a></td>
-                    
+                <td>
+                    <a class="btn btn-warning btn-sm" ng-click="editPerson(person)">
+                        Editar
+                    </a>
+                    <a class="btn btn-danger btn-sm" ng-click="delPerson(person)">
+                        Excluir
+                    </a>
+                </td> 
             </tr>
         </table>
     </div>

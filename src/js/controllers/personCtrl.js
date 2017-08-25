@@ -1,33 +1,35 @@
 angular.module('personApp')
-    .controller('PersonCtrl', function($scope, $location,$routeParams, dao) {
+    .controller('PersonCtrl', function($scope, $location, $http, $routeParams, dao) {
 
-        var loadPersons = function(){
-            $scope.persons = dao.getPersons();
-            $scope.persons.open();
+        var getPessoas = function(){
+            $http.get("http://localhost:3003/api/pessoas")
+                .then(function(response) {
+                    $scope.persons = response.data;
+                }, function(response) {
+                    $scope.persons = "Erro ao carregar os pessoas";
+                });
         }
+        getPessoas();
 
-        loadPersons();
-
-        $scope.isSelected = function (persons) {
-            return persons.some(function (person) {
-                return person.selected;
-            });
-        };
-        
-        $scope.delPersons = function (records) {
-
-            for(var i = records.length - 1; i >= 0; i--) {
-                
-				if(records[i].selected) {
-                    $scope.persons.delete(records[i]);
-				}
-			}
-        	$scope.persons.post();
-        };
-
-        $scope.editPerson = function(record){
-            $scope.person =  OjsUtils.cloneObject(record);
+        $scope.addPessoa = function(){
             $scope.inserting = false;
-            $location.path("/cadPersons").search({id: $scope.person.id});
+            $location.path("/cadPersons");
+        }
+        
+        $scope.editPerson = function(record){
+            $scope.inserting = false;
+            $location.path("/cadPersons").search({id: record._id});
+        };
+
+        $scope.delPerson = function (record) {
+
+            const url = `http://localhost:3003/api/pessoas/${record._id}`
+            
+            $http.delete(url, record).then(function(response) {
+                console.log('Apagou o registro')
+                getPessoas(); 
+            }).catch(function(resp) {
+                console.log('Erro ao apagar o registro')
+            });     
         };
     });

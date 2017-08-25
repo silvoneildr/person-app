@@ -1,21 +1,80 @@
 angular.module('personApp')
     .controller('CadPersonCtrl', function($scope, $http, $location, $routeParams, dao) {
-        
-        $scope.persons = dao.getPersons();
-        $scope.persons.open();
+                
+        $scope.paramId = $routeParams.id       
 
-        var paramId = parseInt($routeParams.id);
+        if (paramId){
+            $http.get(`http://localhost:3003/api/pessoas/${$scope.paramId}`)
+            .then(function(response) {
+                $scope.person = response.data
+                console.log($scope.person)
+            }, function(response){
+                $scope.person = "Erro ao carregar a pessoa";
+            });
+        }
 
+        var listPessoas = function(){
+            $http.get("http://localhost:3003/api/pessoas").then(function(response) {
+                $scope.persons = response;
+            }, function(response) {
+                $scope.persons = "Erro ao carregar os pessoas";
+            });
+        }
+        listPessoas();
+
+        var pessoa = function(p){
+
+        }
+                       
         $http.get("http://www.geonames.org/childrenJSON?geonameId=3469034")
             .then(function(response) {
                 $scope.arrEstados = response;
-    
-                if (paramId) {
-                    $scope.person = OjsUtils.cloneObject( $scope.persons.getById(paramId));
-                };
             }, function(response) {
                 $scope.arrEstados = "Erro ao carregar os Estados";
             });
+
+
+        $scope.createPerson = function(record){
+
+            if (!$scope.persons) {
+                $scope.persons = [];
+		    };
+
+            if (!ValidCPF(record.cpf.replace(/[^\d]+/g,''))){
+                window.alert('O CPF: ' + record.cpf + ' não é válido!');
+                return;
+            }
+
+            var index = $scope.persons.data
+                .map(function(e) { return e.cpf; })
+                .indexOf(record.cpf);
+
+			if (index > -1 && !$scope.paramId) {
+                window.alert('Já existe um registro com CPF: ' + record.cpf);
+                return;
+            };
+
+            $http.post("http://localhost:3003/api/pessoas", record)
+                .then(function(response) {
+                    console.log('Operação realizada com sucesso');
+                    listPessoas();
+                    $scope.cadForm.$setPristine()
+                    $location.path("/persons");
+                }).catch(function(resp) {
+                    console.log('Erro o salvar os dados');
+                })
+        };
+
+        $scope.updatePerson = function(record){
+            const url = `http://localhost:3003/api/pessoas/${record._id}`
+            
+            $http.put(url, record).then(function(response) {
+                console.log('Apagou o registro')
+            }).catch(function(resp) {
+                console.log('Erro ao apagar o registro')
+            });
+            loadPessoas();
+        };
 
         var ValidCPF = function(param) {
             var sum;
@@ -39,31 +98,5 @@ angular.module('personApp')
             if (remnant != parseInt(param.substring(10, 11) ) ) return false;
             return true;
         } 
- 
-        $scope.addPerson = function(record){
 
-            if (!$scope.persons) {
-                $scope.persons = [];
-		    };
-
-            if (!ValidCPF(record.cpf.replace(/[^\d]+/g,''))){
-                window.alert('O CPF: ' + record.cpf + ' não é válido!');
-                return;
-            }
-
-            var index = $scope.persons.data
-                .map(function(e) { 
-                    return e.cpf; 
-                }).indexOf(record.cpf);
-
-			if (index > -1 && !paramId) {
-                window.alert('Já existe um registro com CPF: ' + record.cpf);
-                return;
-            };
-
-            $scope.persons.save(record);
-            $scope.persons.post();
-            $scope.cadForm.$setPristine();
-            $location.path("/persons");
-        };
     });
