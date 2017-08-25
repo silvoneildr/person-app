@@ -2,8 +2,8 @@
     
     <div  class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <div class="btn-group" role="group">
-                <a class="btn btn-primary" href="#!cadPersons">
-                    + Inserir Novo
+                <a class="btn btn-primary" ng-click="addPessoa()">
+                    + Inserir
                 </a>
             </div>
    
@@ -17,18 +17,18 @@
                 <th>Estado</th>
                 <th></th>
             </tr>
-            <tr ng-repeat="person in persons ">
+            <tr ng-repeat="pessoa in pessoas ">
                 <td></td>
-                <td>{{ person.nome }}</td>
-                <td>{{ person.cpf }}</td>
-                <td>{{ person.nasc | date : "dd/MM/y" }}</td>
-                <td>{{ person.peso }}</td>
-                <td>{{ person.uf }}</td>
+                <td>{{ pessoa.nome }}</td>
+                <td>{{ pessoa.cpf }}</td>
+                <td>{{ pessoa.nasc | date : "dd/MM/y" }}</td>
+                <td>{{ pessoa.peso }}</td>
+                <td>{{ pessoa.uf }}</td>
                 <td>
-                    <a class="btn btn-warning btn-sm" ng-click="editPerson(person)">
+                    <a class="btn btn-warning btn-sm" ng-click="editPessoa(pessoa)">
                         Editar
                     </a>
-                    <a class="btn btn-danger btn-sm" ng-click="delPerson(person)">
+                    <a class="btn btn-danger btn-sm" ng-click="delPessoa(pessoa)">
                         Excluir
                     </a>
                 </td> 

@@ -1,12 +1,13 @@
 angular.module('personApp')
     .controller('CadPersonCtrl', function($scope, $http, $location, $routeParams, dao) {
                 
-        $scope.paramId = $routeParams.id       
+        var paramId = $routeParams.id
 
         if (paramId){
-            $http.get(`http://localhost:3003/api/pessoas/${$scope.paramId}`)
-            .then(function(response) {
-                $scope.person = response.data
+            console.log('Entrou')
+            $http.get(`http://localhost:3003/api/pessoas/${paramId}`)
+            .then(function(res) {
+                $scope.person = res.data
                 console.log($scope.person)
             }, function(response){
                 $scope.person = "Erro ao carregar a pessoa";
@@ -21,10 +22,6 @@ angular.module('personApp')
             });
         }
         listPessoas();
-
-        var pessoa = function(p){
-
-        }
                        
         $http.get("http://www.geonames.org/childrenJSON?geonameId=3469034")
             .then(function(response) {
@@ -32,7 +29,6 @@ angular.module('personApp')
             }, function(response) {
                 $scope.arrEstados = "Erro ao carregar os Estados";
             });
-
 
         $scope.createPerson = function(record){
 
