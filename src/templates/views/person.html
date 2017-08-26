@@ -3,7 +3,7 @@
     <div  class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <div class="btn-group" role="group">
                 <a class="btn btn-primary" ng-click="addPessoa()">
-                    + Inserir
+                    + Novo
                 </a>
             </div>
    
@@ -17,7 +17,7 @@
                 <th>Estado</th>
                 <th></th>
             </tr>
-            <tr ng-repeat="pessoa in pessoas ">
+            <tr ng-repeat="pessoa in pessoas">
                 <td></td>
                 <td>{{ pessoa.nome }}</td>
                 <td>{{ pessoa.cpf }}</td>
@@ -25,11 +25,11 @@
                 <td>{{ pessoa.peso }}</td>
                 <td>{{ pessoa.uf }}</td>
                 <td>
-                    <a class="btn btn-warning btn-sm" ng-click="editPessoa(pessoa)">
-                        Editar
+                    <a class="btn btn-warning btn-sm glyphicon glyphicon-pencil" 
+                        ng-click="editPessoa(pessoa)">
                     </a>
-                    <a class="btn btn-danger btn-sm" ng-click="delPessoa(pessoa)">
-                        Excluir
+                    <a class="btn btn-danger btn-sm glyphicon glyphicon-trash" 
+                        ng-click="delPessoa(pessoa)">
                     </a>
                 </td> 
             </tr>

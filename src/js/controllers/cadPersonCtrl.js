@@ -1,40 +1,35 @@
 angular.module('personApp')
-    .controller('CadPersonCtrl', function($scope, $http, $location, $routeParams, dao) {
-                
-        var paramId = $routeParams.id
+    .controller('CadPersonCtrl', function($scope, $http, $location, $routeParams) {
 
-        if (paramId){
-            console.log('Entrou')
-            $http.get(`http://localhost:3003/api/pessoas/${paramId}`)
+        $scope.IdPessoa = $routeParams.id
+
+        // retorna uma pessoa pelo id
+        if ($scope.IdPessoa) {
+        $http.get(`http://localhost:3003/api/pessoas/${$scope.IdPessoa}`)
             .then(function(res) {
                 $scope.person = res.data
-                console.log($scope.person)
-            }, function(response){
+            }, function(res){
                 $scope.person = "Erro ao carregar a pessoa";
             });
-        }
+        } 
 
-        var listPessoas = function(){
-            $http.get("http://localhost:3003/api/pessoas").then(function(response) {
-                $scope.persons = response;
-            }, function(response) {
-                $scope.persons = "Erro ao carregar os pessoas";
-            });
-        }
-        listPessoas();
+        // retorna a lista de pessoas
+        $http.get("http://localhost:3003/api/pessoas").then(function(response) {
+            $scope.persons = response;
+        }, function(response) {
+            $scope.persons = "Erro ao carregar os pessoas";
+        });
                        
+        // retorna lista de estados brasileiros
         $http.get("http://www.geonames.org/childrenJSON?geonameId=3469034")
             .then(function(response) {
                 $scope.arrEstados = response;
             }, function(response) {
                 $scope.arrEstados = "Erro ao carregar os Estados";
             });
-
-        $scope.createPerson = function(record){
-
-            if (!$scope.persons) {
-                $scope.persons = [];
-		    };
+        
+        // insere uma pessoa
+        $scope.createPessoa = function(record){
 
             if (!ValidCPF(record.cpf.replace(/[^\d]+/g,''))){
                 window.alert('O CPF: ' + record.cpf + ' não é válido!');
@@ -45,33 +40,40 @@ angular.module('personApp')
                 .map(function(e) { return e.cpf; })
                 .indexOf(record.cpf);
 
-			if (index > -1 && !$scope.paramId) {
+			if (index > -1 && !$routeParams.id) {
                 window.alert('Já existe um registro com CPF: ' + record.cpf);
                 return;
             };
 
             $http.post("http://localhost:3003/api/pessoas", record)
                 .then(function(response) {
-                    console.log('Operação realizada com sucesso');
-                    listPessoas();
+                    console.log('Registro inserido com sucesso');
                     $scope.cadForm.$setPristine()
-                    $location.path("/persons");
+                    //$location.path("/persons");
                 }).catch(function(resp) {
                     console.log('Erro o salvar os dados');
                 })
         };
 
-        $scope.updatePerson = function(record){
-            const url = `http://localhost:3003/api/pessoas/${record._id}`
-            
-            $http.put(url, record).then(function(response) {
-                console.log('Apagou o registro')
-            }).catch(function(resp) {
-                console.log('Erro ao apagar o registro')
+        // altera uma pessoa
+        $scope.updatePessoa= function(){
+
+            const url = `http://localhost:3003/api/pessoas/${$scope.IdPessoa}`
+
+            $http.put(url, $scope.person).then(function(res) {
+                //console.log('Registro atualizado com sucesso');
+                $scope.person.data = {}
+                $routeParams.id = {}
+                            console.log($scope.person.data)
+            $scope.cadForm.$setPristine()
+            }).catch(function(res) {
+                console.log('Erro ao alterar o registro')
             });
-            loadPessoas();
+            $location.path("/persons")
+            console.log($routeParams)
         };
 
+        // função para validar CPF
         var ValidCPF = function(param) {
             var sum;
             var remnant;
@@ -95,4 +97,4 @@ angular.module('personApp')
             return true;
         } 
 
-    });
+    })

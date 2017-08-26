@@ -1,4 +1,4 @@
-<div class="container" ng-controller="CadPersonCtrl">
+<div class="container" ng-controller="PersonCtrl">
   <form name="cadForm">
     
     <div class="form-group">
@@ -24,15 +24,16 @@
 
     <div class="form-group">
       <label class="form-control-label">Data de Nascimento</label>
-      <input type="date" class="form-control" name="inputDataNasc" ng-model="person.nasc">
+      <input type="text" datetime="yyyy-MM-dd" class="form-control" name="inputDataNasc" 
+        ng-model="person.nasc" value="{{ person.nasc | date: 'yyyy-MM-dd' }}"  >
     </div>
-
+    
     <div class="form-group">
       <label class="form-control-label">Peso (Kg)</label>
       <input type="number" class="form-control" name="inputPeso" 
         placeholder="Informe o peso em KG" 
         ng-model="person.peso"
-        min="0" max="1000">
+        min="1" max="1000">
     </div>
 
     <div class="form-group">
@@ -46,8 +47,12 @@
     <br>
 
     <button type="submit" class="btn btn-primary" ng-disabled="cadForm.$invalid" 
-      ng-click="createPerson(person)">
+      ng-click="createPessoa(person)" ng-show="!IdPessoa">
       Confirmar
+    </button>
+    <button type="submit" class="btn btn-primary" ng-disabled="cadForm.$invalid" 
+      ng-click="updatePessoa()" ng-show="IdPessoa">
+      Atualizar
     </button>
     <a href="#!persons" class="btn btn-light">Cancelar</a>
   </form>

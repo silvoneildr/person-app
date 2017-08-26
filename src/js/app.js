@@ -1,12 +1,9 @@
-angular.module('personApp', [
-    'ngRoute',
-    'db.dao'
-])
-.config([
-    '$routeProvider',
-    function($routeProvider, $routeParams) {
-        $routeProvider
-            .when('/', {
+angular.module('personApp', ['ngRoute'])
+    .config(['$routeProvider',
+        
+        function($routeProvider, $routeParams) {
+            
+            $routeProvider.when('/', {
                 templateUrl: 'views/home.html',
                 controller: 'HomeCtrl'
             })
@@ -23,5 +20,5 @@ angular.module('personApp', [
                 controller: 'CadPersonCtrl'
             })
             .otherwise({redirectTo: '/'});
-    }
+        }
 ]);
