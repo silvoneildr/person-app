@@ -23,9 +23,9 @@
     </div>
 
     <div class="form-group">
-      <label class="form-control-label">Data de Nascimento</label>
-      <input type="text" datetime="yyyy-MM-dd" class="form-control" name="inputDataNasc" 
-        ng-model="person.nasc" value="{{ person.nasc | date: 'yyyy-MM-dd' }}"  >
+      <label for="inputDate" >Data de Nascimento</label>
+      <input type="date" id="inputDate" name="inputDataNasc" ng-model="person.nasc"
+        class="form-control" value="{{ person.nasc | date: 'yyyy-MM-dd' }}"/>
     </div>
     
     <div class="form-group">
@@ -47,11 +47,11 @@
     <br>
 
     <button type="submit" class="btn btn-primary" ng-disabled="cadForm.$invalid" 
-      ng-click="createPessoa(person)" ng-show="!IdPessoa">
+      ng-click="createPessoa(person)" ng-show="!formEdit">
       Confirmar
     </button>
     <button type="submit" class="btn btn-primary" ng-disabled="cadForm.$invalid" 
-      ng-click="updatePessoa()" ng-show="IdPessoa">
+      ng-click="updatePessoa()" ng-show="formEdit">
       Atualizar
     </button>
     <a href="#!persons" class="btn btn-light">Cancelar</a>

@@ -1,8 +1,11 @@
 angular.module('personApp')
     .controller('CadPersonCtrl', function($scope, $http, $location, $routeParams) {
 
-        // retorna uma pessoa pelo id
-        if ($routeParams.edit) {
+        $scope.formEdit = $routeParams.edit
+        console.log($scope.formEdit)
+
+        // se for edição retorna uma pessoa pelo id
+        if ($scope.formEdit) {
             $http.get(`http://localhost:3003/api/pessoas/${$routeParams.id}`)
                 .then(function(res) {
                     $scope.person = res.data
