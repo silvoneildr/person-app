@@ -2,24 +2,28 @@ angular.module('personApp')
     .controller('PersonCtrl', function($scope, $location, $http, $routeParams) {
 
         // retorna a lista de pessoas
-        $http.get("http://localhost:3003/api/pessoas")
+        var getPessoas = function(){
+            $http.get("http://localhost:3003/api/pessoas")
             .then(function(res) {
                 $scope.pessoas = res.data;
             }, function(res) {
                 $scope.pessoas = "Erro ao carregar os pessoas";
             });
+        }
+        getPessoas()
 
         // carrega o formulário para inserir uma pessoa
         $scope.addPessoa = function(){
-            $scope.insert = true;
-            $location.path("/cadPersons");
+            $location.path("/cadPersons").search({
+                edit: false
+            });
         }
         
         // carrega o formulário para alterar uma pessoa
         $scope.editPessoa = function(record){
-            $scope.insert = false;
             $location.path("/cadPersons").search({
-                id: record._id
+                id: record._id,
+                edit: true
             });
         };
 
@@ -30,9 +34,10 @@ angular.module('personApp')
             
             $http.delete(url, record).then(function(res) {
                 console.log('Apagou o registro')
+                getPessoas();
             }).catch(function(resp) {
                 console.log('Erro ao apagar o registro')
-            });     
+            });    
         };
 
     });

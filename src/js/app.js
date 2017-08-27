@@ -15,7 +15,7 @@ angular.module('personApp', ['ngRoute'])
                 templateUrl: 'views/cadPerson.html',
                 controller: 'CadPersonCtrl'
             })
-            .when('/cadPersons/:id', {
+            .when('/cadPersons/:id/:edit', {
                 templateUrl: 'views/cadPerson.html',
                 controller: 'CadPersonCtrl'
             })

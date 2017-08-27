@@ -1,17 +1,17 @@
 angular.module('personApp')
     .controller('CadPersonCtrl', function($scope, $http, $location, $routeParams) {
 
-        $scope.IdPessoa = $routeParams.id
-
         // retorna uma pessoa pelo id
-        if ($scope.IdPessoa) {
-        $http.get(`http://localhost:3003/api/pessoas/${$scope.IdPessoa}`)
-            .then(function(res) {
-                $scope.person = res.data
-            }, function(res){
-                $scope.person = "Erro ao carregar a pessoa";
-            });
-        } 
+        if ($routeParams.edit) {
+            $http.get(`http://localhost:3003/api/pessoas/${$routeParams.id}`)
+                .then(function(res) {
+                    $scope.person = res.data
+                }, function(res){
+                    $scope.person = "Erro ao carregar a pessoa";
+                });
+        } else {
+            $scope.person = {}
+        }
 
         // retorna a lista de pessoas
         $http.get("http://localhost:3003/api/pessoas").then(function(response) {
@@ -47,30 +47,24 @@ angular.module('personApp')
 
             $http.post("http://localhost:3003/api/pessoas", record)
                 .then(function(response) {
-                    console.log('Registro inserido com sucesso');
-                    $scope.cadForm.$setPristine()
-                    //$location.path("/persons");
+                    console.log('Registro inserido com sucesso!');  
                 }).catch(function(resp) {
-                    console.log('Erro o salvar os dados');
+                    console.log('Erro ao inserir o registro!');
                 })
+            $location.path("/persons");
         };
 
         // altera uma pessoa
         $scope.updatePessoa= function(){
 
-            const url = `http://localhost:3003/api/pessoas/${$scope.IdPessoa}`
+            const url = `http://localhost:3003/api/pessoas/${$routeParams.id}`
 
             $http.put(url, $scope.person).then(function(res) {
-                //console.log('Registro atualizado com sucesso');
-                $scope.person.data = {}
-                $routeParams.id = {}
-                            console.log($scope.person.data)
-            $scope.cadForm.$setPristine()
+                console.log('Registro atualizado com sucesso!')          
             }).catch(function(res) {
-                console.log('Erro ao alterar o registro')
+                console.log('Erro ao atualizar o registro!')
             });
             $location.path("/persons")
-            console.log($routeParams)
         };
 
         // função para validar CPF
