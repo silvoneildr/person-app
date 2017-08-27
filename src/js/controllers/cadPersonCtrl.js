@@ -2,9 +2,8 @@ angular.module('personApp')
     .controller('CadPersonCtrl', function($scope, $http, $location, $routeParams) {
 
         $scope.formEdit = $routeParams.edit
-        console.log($scope.formEdit)
-
-        // se for edição retorna uma pessoa pelo id
+ 
+         // se for edição retorna uma pessoa pelo id
         if ($scope.formEdit) {
             $http.get(`http://localhost:3003/api/pessoas/${$routeParams.id}`)
                 .then(function(res) {
@@ -50,9 +49,9 @@ angular.module('personApp')
 
             $http.post("http://localhost:3003/api/pessoas", record)
                 .then(function(response) {
-                    console.log('Registro inserido com sucesso!');  
+                    //console.log('Registro inserido com sucesso!');  
                 }).catch(function(resp) {
-                    console.log('Erro ao inserir o registro!');
+                    console.log(resp);
                 })
             $location.path("/persons");
         };
@@ -63,9 +62,9 @@ angular.module('personApp')
             const url = `http://localhost:3003/api/pessoas/${$routeParams.id}`
 
             $http.put(url, $scope.person).then(function(res) {
-                console.log('Registro atualizado com sucesso!')          
+                //console.log('Registro atualizado com sucesso!')          
             }).catch(function(res) {
-                console.log('Erro ao atualizar o registro!')
+                console.log(res)
             });
             $location.path("/persons")
         };
