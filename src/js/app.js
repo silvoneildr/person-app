@@ -1,4 +1,7 @@
-angular.module('personApp', ['ngRoute'])
+angular.module('personApp', [
+        'ngRoute',
+        'ngMask'
+    ])
     .config(['$routeProvider',
         
         function($routeProvider, $routeParams) {

@@ -5,7 +5,7 @@ angular.module('personApp')
  
          // se for edição retorna uma pessoa pelo id
         if ($scope.formEdit) {
-            $http.get(`http://app3etapagt4w.herokuapp.com/api/pessoas/${$routeParams.id}`)
+            $http.get(`https://app3etapagt4w.herokuapp.com/api/pessoas/${$routeParams.id}`)
                 .then(function(res) {
                     $scope.person = res.data
                 }, function(res){
