@@ -17,7 +17,7 @@
                 <th>Estado (UF)</th>
                 <th></th>
             </tr>
-            <tr ng-repeat="pessoa in pessoas">
+            <tr ng-repeat="pessoa in pessoas track by $index">
                 <td></td>
                 <td>{{ pessoa.nome }}</td>
                 <td>{{ pessoa.cpf }}</td>

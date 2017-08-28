@@ -3,7 +3,7 @@ angular.module('personApp')
 
         // retorna a lista de pessoas
         var getPessoas = function(){
-            $http.get("http://localhost:3003/api/pessoas")
+            $http.get("https://localhost:3003/api/pessoas")
             .then(function(res) {
                 $scope.pessoas = res.data;
             }, function(res) {
@@ -32,7 +32,7 @@ angular.module('personApp')
         // exclui uma pessoa
         $scope.delPessoa = function(record) {
 
-            const url = `http://localhost:3003/api/pessoas/${record._id}`
+            const url = `https://localhost:3003/api/pessoas/${record._id}`
             
             $http.delete(url, record).then(function(res) {
                 //console.log('Apagou o registro')
