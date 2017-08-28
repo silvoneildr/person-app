@@ -5,7 +5,7 @@ angular.module('personApp')
  
          // se for edição retorna uma pessoa pelo id
         if ($scope.formEdit) {
-            $http.get(`https://localhost:3003/api/pessoas/${$routeParams.id}`)
+            $http.get(`https://app3etapagt4w.herokuapp.com/api/pessoas/${$routeParams.id}`)
                 .then(function(res) {
                     $scope.person = res.data
                 }, function(res){
@@ -16,7 +16,7 @@ angular.module('personApp')
         }
 
         // retorna a lista de pessoas
-        $http.get("https://localhost:3003/api/pessoas").then(function(response) {
+        $http.get("https://app3etapagt4w.herokuapp.com/api/pessoas").then(function(response) {
             $scope.persons = response;
         }, function(response) {
             $scope.persons = "Erro ao carregar os pessoas";
@@ -47,7 +47,7 @@ angular.module('personApp')
                 return;
             };
 
-            $http.post("https://localhost:3003/api/pessoas", record)
+            $http.post("https://app3etapagt4w.herokuapp.com/api/pessoas", record)
                 .then(function(response) {
                     //console.log('Registro inserido com sucesso!');  
                 }).catch(function(resp) {
@@ -59,7 +59,7 @@ angular.module('personApp')
         // altera uma pessoa
         $scope.updatePessoa= function(){
 
-            const url = `https://localhost:3003/api/pessoas/${$routeParams.id}`
+            const url = `https://localhost:3003app3etapagt4w.herokuapp.com/api/pessoas/${$routeParams.id}`
 
             $http.put(url, $scope.person).then(function(res) {
                 //console.log('Registro atualizado com sucesso!')          
