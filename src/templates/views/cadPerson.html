@@ -14,7 +14,7 @@
       <label class="form-control-label">CPF</label>
       <input type="text" class="form-control" name="inputCPF" 
         placeholder="Informe o CPF" 
-        ng-model="person.cpf" 
+        ng-model="person.cpf"
         ng-pattern="/^\d{3}.\d{3}.\d{3}-\d{2}$/" required>
       <p class="alert alert-danger" 
           ng-show="cadForm.inputCPF.$invalid && cadForm.inputCPF.$dirty && !cadForm.inputCPF.$pattern">
